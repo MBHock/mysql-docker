@@ -1,8 +1,11 @@
-FROM mysql/mysql-server
+FROM mysql/mysql-server:8.0
 
-ENV MYSQL_ROOT_PASSWORD=secret-pw-root
-ENV MYSQL_DATABASE=mho
-ENV MYSQL_DATABASE=test
-# MYSQL_DATABASE
+ENV MYSQL_USER=mysql
+ENV MYSQL_PASSWORD=mysql
+ENV MYSQL_ROOT_PASSWORD=mysql
+ENV MYSQL_DATABASE=cmx
+ENV MYSQL_HOST=localhost
 
-EXPOSE 3306 33060
+COPY sql-scripts/ /docker-entrypoint-initdb.d/
+
+EXPOSE 3306:3306
